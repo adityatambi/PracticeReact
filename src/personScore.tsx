@@ -35,7 +35,6 @@ export function PersonScore() {
       <p>{sillyExpensiveCalculation}</p>
       <button onClick={() => setScore(score + 1)}>Add</button>
       <button onClick={() => setScore(score - 1)}>Subtract</button>
-      <button onClick={() => setScore(0)}>Reset</button>
     </div>
   );
 }

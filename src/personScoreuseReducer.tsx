@@ -1,5 +1,6 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useCallback } from 'react';
 import { getPerson } from './getPerson';
+import { Reset } from './Reset';
 
 type State = {
   name: string | undefined;
@@ -55,6 +56,10 @@ export function PersonScoreuseReducer() {
     getPerson().then(({ name }) => dispatch({ type: 'initialize', name }));
   }, []);
 
+  const handleReset = useCallback(() => {
+    dispatch({ type: 'reset' });
+  }, []);
+
   useEffect(() => {
     if (!loading) {
       addButtonRef.current?.focus();
@@ -82,7 +87,7 @@ export function PersonScoreuseReducer() {
       <button onClick={() => dispatch({ type: 'decrement' })} ref={subtractButtonRef}>
         Subtract
       </button>
-      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+      <Reset onClick={handleReset} />
     </div>
   );
 }
